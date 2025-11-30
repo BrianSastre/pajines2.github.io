@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MODS MEGA SERVER 2025</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0a0a0a;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: #121212;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 166, 255, 0.1);
+            overflow: hidden;
+            border: 1px solid #1a1a1a;
+        }
+
+        .header {
+            background: #151515;
+            color: #e0e0e0;
+            padding: 40px;
+            text-align: center;
+            border-bottom: 2px solid #00A6FF;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            color: #00A6FF;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        .header p {
+            font-size: 1.1em;
+            color: #888;
+            font-weight: 300;
+        }
+
+        .search-box {
+            padding: 20px 40px;
+            background: #151515;
+            border-bottom: 1px solid #1a1a1a;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 15px 20px;
+            font-size: 16px;
+            background: #1a1a1a;
+            border: 1px solid #252525;
+            color: #e0e0e0;
+            border-radius: 6px;
+            transition: all 0.3s;
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: #00A6FF;
+            background: #1f1f1f;
+            box-shadow: 0 0 0 2px rgba(0, 166, 255, 0.1);
+        }
+
+        .search-box input::placeholder {
+            color: #555;
+        }
+
+        .search-box input::-webkit-search-cancel-button {
+            -webkit-appearance: none;
+            appearance: none;
+            height: 14px;
+            width: 14px;
+            background: #555;
+            -webkit-mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>');
+            mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>');
+            cursor: pointer;
+        }
+
+        .section {
+            padding: 30px 40px;
+        }
+
+        .section-title {
+            font-size: 1.5em;
+            color: #00A6FF;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #252525;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+        }
+
+        .mod-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .mod-card {
+            background: #1a1a1a;
+            border: 1px solid #252525;
+            border-radius: 6px;
+            padding: 20px;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+
+        .mod-card:hover {
+            transform: translateY(-2px);
+            border-color: #00A6FF;
+            box-shadow: 0 4px 12px rgba(0, 166, 255, 0.15);
+        }
+
+        .mod-name {
+            font-size: 1.1em;
+            font-weight: 400;
+            color: #00A6FF;
+            margin-bottom: 8px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .mod-name:hover {
+            color: #33b8ff;
+        }
+
+        .mod-description {
+            color: #888;
+            font-size: 0.9em;
+            line-height: 1.5;
+            font-weight: 300;
+        }
+
+        .stats {
+            background: #151515;
+            color: #888;
+            padding: 25px 40px;
+            text-align: center;
+            font-size: 1em;
+            border-top: 1px solid #252525;
+            font-weight: 300;
+        }
+
+        .stats strong {
+            color: #00A6FF;
+            font-weight: 400;
+        }
+
+        @media (max-width: 768px) {
+            .mod-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .header h1 {
+                font-size: 1.8em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>MODS MEGA SERVER 2025</h1>
+            <p>Lista completa de modificaciones instaladas</p>
+        </div>
+
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Buscar mods...">
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Brian's Mods</h2>
+            <div class="mod-grid" id="brianMods"></div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Edu's Mods</h2>
+            <div class="mod-grid" id="eduMods"></div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Damian's Mods</h2>
+            <div class="mod-grid" id="damianMods"></div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">OptiMods</h2>
+            <div class="mod-grid" id="optiMods"></div>
+        </div>
+
+        <div class="stats" id="stats"></div>
+    </div>
+
+    <script>
+        const mods = {
+            brian: [
+                { name: "JEI", desc: "Just Enough Items - Visualiza recetas y usos de items" },
+                { name: "JER", desc: "Just Enough Resources - Información sobre drops y recursos" },
+                { name: "Create", desc: "Mod de maquinaria y automatización mecánica" },
+                { name: "Create Stuff 'N Additions", desc: "Añade más contenido a Create" },
+                { name: "Create: Threaded Trains", desc: "Mejoras para trenes en Create" },
+                { name: "Slag n' Embers", desc: "Añade contenido relacionado con fundición" },
+                { name: "Create: Design n' Decor", desc: "Decoraciones para Create" },
+                { name: "Create: Dreams n' Desires", desc: "Expansión de contenido Create" },
+                { name: "Create: Industrialized Architecture", desc: "Bloques arquitectónicos industriales" },
+                { name: "Better Combat", desc: "Mejora el sistema de combate" },
+                { name: "Simply Swords", desc: "Añade variedad de espadas" },
+                { name: "Simply More", desc: "Más contenido variado" },
+                { name: "TugkanDeMan's Weaponry Reforged", desc: "Arsenal de armas medievales" },
+                { name: "Wall Jump", desc: "Permite saltar en paredes" },
+                { name: "Blue Skies", desc: "Añade dos nuevas dimensiones celestiales" },
+                { name: "Gliders", desc: "Planeadores para volar" },
+                { name: "Mowzie's Mobs", desc: "Añade jefes y criaturas épicas" },
+                { name: "MrCrayFish Furniture Refurbished", desc: "Muebles y decoraciones" },
+                { name: "Goblin Traders", desc: "Comerciantes goblins ambulantes" },
+                { name: "Easy Magic", desc: "Sistema de magia simplificado" },
+                { name: "Easy Anvils", desc: "Yunques mejorados" },
+                { name: "Diagonal Fences", desc: "Cercas diagonales" },
+                { name: "Diagonal Walls", desc: "Muros diagonales" },
+                { name: "FramedBlocks", desc: "Bloques personalizables" },
+                { name: "Pick Up Notifier", desc: "Notifica items recogidos" },
+                { name: "Leaves Be Gone", desc: "Facilita cortar hojas" },
+                { name: "Botania", desc: "Magia natural y flores mágicas" },
+                { name: "MythicBotany", desc: "Expansión mítica de Botania" },
+                { name: "Iron's Spells and Spellbooks", desc: "Sistema completo de hechizos" },
+                { name: "Cataclysm: Spellbooks", desc: "Compatibilidad de hechizos con Cataclysm" },
+                { name: "Ice and Fire: Spellbooks", desc: "Hechizos para Ice and Fire" },
+                { name: "Relics", desc: "Reliquias con habilidades únicas" },
+                { name: "Artifacts", desc: "Artefactos con efectos especiales" },
+                { name: "Relics: Artifacts Compat", desc: "Compatibilidad entre Relics y Artifacts" },
+                { name: "Relics: Alex's Mobs Compat", desc: "Compatibilidad con Alex's Mobs" },
+                { name: "Alex's Mobs", desc: "80+ nuevas criaturas realistas" },
+                { name: "Carry On", desc: "Carga y mueve bloques y mobs" },
+                { name: "LittlePictureFrames", desc: "Marcos de fotos decorativos" },
+                { name: "Monsters & Mushrooms", desc: "Criaturas y hongos" },
+                { name: "Born in Chaos", desc: "Nuevos mobs hostiles desafiantes" },
+                { name: "Dungeons Content", desc: "Contenido adicional de mazmorras" },
+                { name: "IamMusicPlayer Renewed", desc: "Reproductor de música" },
+                { name: "Supplementaries", desc: "Decoraciones y utilidades variadas" },
+                { name: "Sons of Sins", desc: "Jefes épicos basados en pecados" },
+                { name: "Stalwart Dungeons", desc: "Mazmorras desafiantes" },
+                { name: "Wandering Bags", desc: "Mochilas del comerciante errante" },
+                { name: "Valhelsia Structures", desc: "Estructuras generadas" },
+                { name: "Call of Yucatán", desc: "Dimensión maya" },
+                { name: "The Graveyard", desc: "Cementerios y contenido oscuro" },
+                { name: "Dungeons Gear", desc: "Equipo de mazmorras" },
+                { name: "Dungeons Mobs", desc: "Criaturas de mazmorras" },
+                { name: "The Undergarden", desc: "Dimensión subterránea" },
+                { name: "Aquamirae", desc: "Contenido marino y barcos" },
+                { name: "Shield Expansion", desc: "Variedad de escudos" },
+                { name: "Savage & Ravage", desc: "Mejora raids y pillagers" },
+                { name: "Integrated Dungeons and Structures", desc: "Mazmorras integradas" },
+                { name: "Simple Shops", desc: "Sistema de tiendas" },
+                { name: "Waystones", desc: "Teletransporte entre waypoints" },
+                { name: "Towers of the Wild", desc: "Torres en el mundo" },
+                { name: "L_Ender's Cataclysm", desc: "Jefes épicos de End" },
+                { name: "Better Mob Combat", desc: "IA mejorada de combate" },
+                { name: "Small Ships", desc: "Barcos navegables" },
+                { name: "Skin Changer", desc: "Cambia tu skin en juego" },
+                { name: "Chunky", desc: "Pre-genera chunks" },
+                { name: "Farmer's Delight", desc: "Agricultura y cocina expandida" },
+                { name: "Farmer's Delight: Plus", desc: "Más contenido culinario" },
+                { name: "Farmer's Delight Compat", desc: "Compatibilidad FD" },
+                { name: "Ice and Fire Delight", desc: "Recetas Ice and Fire" },
+                { name: "More Delight", desc: "Más comida" },
+                { name: "Italian Delight", desc: "Comida italiana" },
+                { name: "Ender's Delight", desc: "Comida del End" },
+                { name: "My Nether's Delight", desc: "Comida del Nether" },
+                { name: "Delightful Creators", desc: "Integración Create + FD" },
+                { name: "Meet Your Fight", desc: "Jefes únicos" },
+                { name: "True Ending - Ender Dragon Overhaul", desc: "Renovación del dragón" },
+                { name: "Controlling", desc: "Busca controles de teclas" },
+                { name: "Guard Villagers", desc: "Aldeanos guardias" },
+                { name: "Cosmetic Armor Reworked", desc: "Armadura cosmética" },
+                { name: "Undead Unleashed!", desc: "Nuevos no-muertos" },
+                { name: "Knight Quest", desc: "Aventura de caballeros" },
+                { name: "Storage Drawers", desc: "Cajones de almacenamiento" },
+                { name: "OpenBlocks Elevator", desc: "Ascensores" },
+                { name: "Handcrafted", desc: "Muebles artesanales" },
+                { name: "Critters and Companions", desc: "Animales adorables" },
+                { name: "FancyMenu", desc: "Menú personalizable" },
+                { name: "HT's TreeChop", desc: "Tala de árboles mejorada" },
+                { name: "Simple Voice Chat", desc: "Chat de voz" },
+                { name: "Sound Physics Remastered", desc: "Física de sonido realista" },
+                { name: "What Are They Up To", desc: "Muestra acciones de jugadores" },
+                { name: "The Twilight Forest", desc: "Dimensión de bosque crepuscular" },
+                { name: "Corail Tombstone", desc: "Tumbas al morir" },
+                { name: "Player Revive", desc: "Revive a jugadores caídos" },
+                { name: "Immersive Aircraft", desc: "Aeronaves pilotables" },
+                { name: "Combat Roll", desc: "Rodar en combate" },
+                { name: "EmoteCraft", desc: "Emotes y gestos" },
+                { name: "Simple Hats", desc: "Sombreros cosméticos" },
+                { name: "Shoulder Surfing", desc: "Cámara sobre el hombro" },
+                { name: "Bosses of Mass Destruction", desc: "Jefes masivos épicos" },
+                { name: "Stoneworks", desc: "Variedad de piedras" },
+                { name: "Magnum Torch", desc: "Antorcha anti-spawn" },
+                { name: "Mutant Monsters", desc: "Versiones mutantes de mobs" },
+                { name: "When Dungeons Arise", desc: "Estructuras masivas" },
+                { name: "Seven Seas", desc: "Exploración marina" },
+                { name: "Polymorph", desc: "Resuelve conflictos de recetas" },
+                { name: "Comforts", desc: "Sacos de dormir y hamacas" },
+                { name: "From The Fog", desc: "Horror atmosférico" },
+                { name: "Every Compat", desc: "Compatibilidad de madera" },
+                { name: "No Chat Reports", desc: "Desactiva reportes de chat" },
+                { name: "Let Me Despawn", desc: "Mejora despawn de entidades" },
+                { name: "Jump Over Fences", desc: "Salta cercas" },
+                { name: "Dark Mobs", desc: "Mobs de oscuridad" },
+                { name: "Apotheosis", desc: "Encantamientos y spawners mejorados" },
+                { name: "Mutated Items", desc: "Items mutados" },
+                { name: "Unusual Furniture", desc: "Muebles únicos" },
+                { name: "Lights Out", desc: "Mecánica de oscuridad" },
+                { name: "Shut Your Eyes", desc: "Efectos al cerrar ojos" },
+                { name: "Aquaculture 2", desc: "Pesca expandida" },
+                { name: "The Aether", desc: "Dimensión celestial clásica" },
+                { name: "Gateways to Eternity", desc: "Portales a dimensiones" },
+                { name: "Explorer's Compass", desc: "Brújula de estructuras" },
+                { name: "Nature's Compass", desc: "Brújula de biomas" },
+                { name: "Forge Config Screens", desc: "Menús de configuración" },
+                { name: "Overflowing Bars", desc: "Barras de vida/hambre expandidas" },
+                { name: "Easy NPC", desc: "Crea NPCs fácilmente" },
+                { name: "Samurai Dynasty", desc: "Contenido samurái" },
+                { name: "Astral Dimension", desc: "Dimensión astral" },
+                { name: "AL's Boss Rush", desc: "Modo boss rush" },
+                { name: "Friends and Foes", desc: "Nuevas criaturas" },
+                { name: "Weaver's Cosmetics", desc: "Cosméticos" },
+                { name: "Weaver's Cosplay", desc: "Disfraces de personajes" },
+                { name: "Just Zoom", desc: "Zoom de cámara" },
+                { name: "Iter RPG", desc: "Sistema RPG" },
+                { name: "Gnumus Settlement", desc: "Asentamientos generados" },
+                { name: "Myths & Legends", desc: "Contenido mitológico" },
+                { name: "Armor of the Ages", desc: "Armaduras históricas" },
+                { name: "Mycelium Mire", desc: "Bioma de hongos" },
+                { name: "Bossominium", desc: "Invoca jefes" },
+                { name: "Epic Knights", desc: "Armaduras y armas medievales" },
+                { name: "Immersive Melodies", desc: "Música ambiental" },
+                { name: "Ultris: Boss Expansion", desc: "Más jefes" },
+                { name: "Fantasy Furniture", desc: "Muebles fantásticos" },
+                { name: "Mutant More", desc: "Más mutantes" },
+                { name: "Boss Checklist", desc: "Lista de progreso de jefes" },
+                { name: "Boss Checklist - Ultris", desc: "Compatibilidad Ultris" },
+                { name: "Wyrmroost", desc: "Dragones domesticables" },
+                { name: "Panorama", desc: "Panoramas personalizados" },
+                { name: "CasinoCraft", desc: "Casino y juegos de azar" },
+                { name: "Configured", desc: "Configuración mejorada" },
+                { name: "Golden Hopper", desc: "Tolvas doradas mejoradas" },
+                { name: "Lycanites Mobs", desc: "Criaturas de mundo abierto" },
+                { name: "MmmMmmMmmMmm", desc: "Muñecos de práctica" },
+                { name: "Not Enough Recipe Book", desc: "Libro de recetas mejorado" },
+                { name: "Straw Statues", desc: "Estatuas decorativas" }
+            ],
+            edu: [
+                { name: "Additional Lights", desc: "Más opciones de iluminación" },
+                { name: "AppleSkin", desc: "Muestra saciedad de comida" },
+                { name: "Awesome Dungeon", desc: "Mazmorras impresionantes" },
+                { name: "Better Villages", desc: "Aldeas mejoradas" },
+                { name: "Cloud Boots", desc: "Botas que crean nubes" },
+                { name: "Dungeons and Taverns", desc: "Tabernas y mazmorras" },
+                { name: "Explorify", desc: "Estructuras de exploración" },
+                { name: "Jade", desc: "Muestra info de bloques/entidades" },
+                { name: "Medieval Craft Weapons", desc: "Armas medievales" },
+                { name: "Medieval Craft Structures", desc: "Estructuras medievales" },
+                { name: "Portable Mobs", desc: "Transporta mobs" },
+                { name: "Rex's Additional Structures", desc: "Estructuras adicionales" },
+                { name: "Simple Farming", desc: "Agricultura simplificada" },
+                { name: "Spartan Shields", desc: "Variedad de escudos" },
+                { name: "Structory", desc: "Estructuras variadas" },
+                { name: "Unnamed Deserts", desc: "Desiertos mejorados" },
+                { name: "Unnamed Sea", desc: "Océanos mejorados" },
+                { name: "Xaero's Minimap", desc: "Minimapa en pantalla" },
+                { name: "Xaero's World Map", desc: "Mapa del mundo" },
+                { name: "Xaero ZoomOut", desc: "Zoom para mapas" },
+                { name: "Icon Xaero's", desc: "Iconos para mapas" },
+                { name: "Xaero's Minimap & World Map - Waystones", desc: "Compatibilidad waystones" },
+                { name: "Xaero Train Map", desc: "Mapas para trenes" },
+                { name: "Litematica", desc: "Esquemas de construcción" }
+            ],
+            damian: [
+                { name: "YUNG's Better Desert Temples", desc: "Templos del desierto mejorados" },
+                { name: "YUNG's Jungle Temples", desc: "Templos de jungla mejorados" },
+                { name: "YUNG's Ocean Monuments", desc: "Monumentos oceánicos mejorados" },
+                { name: "YUNG's Strongholds", desc: "Fortalezas mejoradas" },
+                { name: "YUNG's Mineshafts", desc: "Minas abandonadas mejoradas" },
+                { name: "YUNG's Witch Huts", desc: "Cabañas de brujas mejoradas" },
+                { name: "Dungeon Crawl", desc: "Mazmorras de exploración" },
+                { name: "Hexerei", desc: "Brujería y magia oscura" },
+                { name: "Deeper and Darker", desc: "Expansión deep dark" },
+                { name: "Occultism", desc: "Magia oculta y rituales" },
+                { name: "Ad Astra", desc: "Exploración espacial" },
+                { name: "Enchantment Descriptions", desc: "Describe encantamientos" },
+                { name: "Croptopia", desc: "Cultivos y comidas" },
+                { name: "The Bumblezone", desc: "Dimensión de abejas" },
+                { name: "Immersive Armors", desc: "Armaduras inmersivas" },
+                { name: "BetterNether", desc: "Nether mejorado" },
+                { name: "BetterEnd", desc: "End mejorado" },
+                { name: "Ice and Fire", desc: "Dragones y criaturas míticas" },
+                { name: "Chococraft", desc: "Chocobos domesticables" },
+                { name: "Immersive Ores", desc: "Minerales inmersivos" },
+                { name: "Awesome Dungeon Ocean", desc: "Mazmorras oceánicas" },
+                { name: "Awesome Dungeon Nether", desc: "Mazmorras del Nether" },
+                { name: "EvilCraft", desc: "Magia oscura y rituales" },
+                { name: "Dungeons Enhanced", desc: "Mazmorras mejoradas" },
+                { name: "Stack Refill", desc: "Rellena stacks automáticamente" },
+                { name: "Vampirism", desc: "Conviértete en vampiro" }
+            ],
+            opti: [
+                { name: "Embeddium", desc: "Optimización de renderizado" },
+                { name: "Embeddium ++", desc: "Mejoras adicionales Embeddium" },
+                { name: "My Server Is Compatible", desc: "Compatibilidad de servidor" },
+                { name: "ModernFix", desc: "Arreglos de rendimiento modernos" },
+                { name: "FerriteCore", desc: "Reduce uso de RAM" },
+                { name: "ImmediatelyFast", desc: "Optimización inmediata" },
+                { name: "Lazy DFU", desc: "Inicio más rápido" },
+                { name: "StarLight", desc: "Motor de iluminación optimizado" },
+                { name: "Bocchium", desc: "Optimizaciones varias" },
+                { name: "Enhanced Block Entities", desc: "Entidades de bloque optimizadas" },
+                { name: "Entity Collision FPS Fix", desc: "Arregla lag de colisiones" },
+                { name: "Francium", desc: "Optimización de chunks" },
+                { name: "Noisium", desc: "Optimización de generación" },
+                { name: "Fast Async World Save", desc: "Guardado rápido asíncrono" },
+                { name: "Smooth Chunk Save", desc: "Guardado suave de chunks" },
+                { name: "DespawnTweaker", desc: "Optimiza despawn de entidades" }
+            ]
+        };
+
+        function searchMod(modName) {
+            const searchName = modName.toLowerCase()
+                .replace(/'/g, '')
+                .replace(/\s+/g, '-')
+                .replace(/:/g, '')
+                .replace(/&/g, 'and');
+            return `https://www.curseforge.com/minecraft/mc-mods/${searchName}`;
+        }
+
+        function renderMods(modsArray, containerId) {
+            const container = document.getElementById(containerId);
+            modsArray.forEach(mod => {
+                const card = document.createElement('div');
+                card.className = 'mod-card';
+                card.innerHTML = `
+                    <a href="${searchMod(mod.name)}" target="_blank" class="mod-name">${mod.name}</a>
+                    <p class="mod-description">${mod.desc}</p>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        renderMods(mods.brian, 'brianMods');
+        renderMods(mods.edu, 'eduMods');
+        renderMods(mods.damian, 'damianMods');
+        renderMods(mods.opti, 'optiMods');
+
+        const totalMods = mods.brian.length + mods.edu.length + mods.damian.length + mods.opti.length;
+        document.getElementById('stats').innerHTML = `
+            <strong>Total de Mods: ${totalMods}</strong> | 
+            Brian: ${mods.brian.length} | 
+            Edu: ${mods.edu.length} | 
+            Damian: ${mods.damian.length} | 
+            OptiMods: ${mods.opti.length}
+        `;
+
+        document.getElementById('searchInput').addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const allCards = document.querySelectorAll('.mod-card');
+            
+            allCards.forEach(card => {
+                const modName = card.querySelector('.mod-name').textContent.toLowerCase();
+                const modDesc = card.querySelector('.mod-description').textContent.toLowerCase();
+                
+                if (modName.includes(searchTerm) || modDesc.includes(searchTerm)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
